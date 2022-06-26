@@ -1,7 +1,8 @@
 <template>
   <div class="page">
     <h3>Задачи</h3>
-    <Tasks :tasks="tasks" />
+    <Tasks :tasks="tasks" v-if="tasks.length" />
+    <div v-else>Задач нет</div>
 
     <!-- Кнопка для создания задачи -->
     <div class="fixed-action-btn">
