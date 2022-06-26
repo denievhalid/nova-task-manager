@@ -16,16 +16,25 @@ const routes = [
     path: "/",
     name: PAGES.HOME,
     component: Home,
+    meta: {
+      title: "Задачи",
+    },
   },
   {
     path: "/create",
     name: PAGES.CREATE,
     component: CreateTask,
+    meta: {
+      title: "Новая задача",
+    },
   },
   {
     path: "/edit/:id",
     name: PAGES.EDIT,
     component: EditTask,
+    meta: {
+      title: "Редактирование задачи",
+    },
   },
 ];
 
@@ -35,6 +44,8 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  document.title = to.meta.title;
+
   if (to.name === PAGES.EDIT) {
     const task = Storage.getById(STORAGE_NAME, to.params.id);
     if (task) {
